@@ -150,6 +150,21 @@ def solver(puzzle, answer):
     return solve_row(puzzle, 0, None, answer, 4)
 
 
+def print_res(res):
+    print(f"First move: {res[0]}")
+    for i, step in enumerate(res):
+        if i == 0:
+            continue
+        diff_x = res[i][0] - res[i - 1][0]
+        diff_y = res[i][1] - res[i - 1][1]
+        if diff_x != 0:
+            direction = "right" if diff_x > 0 else "right"
+            print(f"{direction} {diff_x}")
+        else:
+            direction = "down" if diff_y > 0 else "up"
+            print(f"{direction} {diff_y}")
+
+
 def main():
     process = Process()
     puzzle = ScreenArea(320, 340, 380, 335)
@@ -163,7 +178,7 @@ def main():
     #if answer is not picked up correctly a harccode is needed
     #answer_input = ["E9", "55"]
     res = solver(puzzle_input, answer_input)
-    print(res)
+    print_res(res)
 
 
 main()
